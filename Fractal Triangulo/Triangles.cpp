@@ -1,20 +1,34 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_primitives.h>
+#include<stdio.h>
+#define _USE_MATH_DEFINES
 #include <math.h>
+
 #include "Triangles.h"
+
+#define RACONV (M_PI/180) //"Radian Conversion"
+
 
 
 void triFractal(float x, float y, float lbase, float langle, float rangle, float lend) {
 
 	float x2 = x + lbase; //Coordenada del final de la base
-	float x3 = x + lbase * (1 - cos(langle*3.14 / 180)); //La coordenada X del tercer vértice.
-	float y3 = y - tan(langle*3.14 / 180)*x3; //La coordenada Y del tercer vértice. sohcahTOA: Tan(langle)*adyacente = opuesto (altura).
+
+	float topangle = (180 - langle + rangle); //Calculo el ángulo superior
+
+	// Usando trigonometría, teniendo los tres ángulos y un lado podemos calcular los otros dos lados.
+	
+	float lside = lbase * sin(-rangle * RACONV)/sin(topangle * RACONV); //Calculamos el lado izquierdo del triángulo.
+	float lsidex = lside * cos(langle * RACONV); // Con el angulo izquierdo calculamos el lado opuesto y adyacente del triangulo rectangulo que se forma...
+	float lsidey = lside * sin(langle * RACONV); //...Si tomamos el lado izquierdo como una hipotenusa. 
 
 
-	drawTriangle(x, x2, x3, y, y3);
+	float x3 = x + lsidex ; //La coordenada X del tercer vértice.
+	float y3 = y - lsidey ;//La coordenada Y del tercer vértice. sohcahTOA: Tan(langle)*adyacente = opuesto (altura).
 
+	drawTriangle(x, x2, x3, y, y3); //Dibujamos el triangulo base.
 
-	TriRecurs(x, x2, x3, y, y, y3, lend);
+	TriRecurs(x, x2, x3, y, y, y3, lend); //Función recursiva.
 
 }
 
@@ -31,8 +45,8 @@ int TriRecurs(float x1,float x2,float x3,float y1,float y2,float y3,float lend) 
 	float xv = (x1 + x2 + x3) / 3;
 
 		if (
-				(sqrt(pow((xv - x1), 2) + pow((yv - y1), 2))) < lend ||
-				(sqrt(pow((xv - x2), 2) + pow((yv - y2), 2))) < lend ||
+				(sqrt(pow((xv - x1), 2) + pow((yv - y1), 2))) < lend || //Si la distancia entre algun par de vertices a dibujar es menor a lEnd...
+				(sqrt(pow((xv - x2), 2) + pow((yv - y2), 2))) < lend || //...entonces la recursividad termina ahí.
 				(sqrt(pow((xv - x3), 2) + pow((yv - y3), 2))) < lend
 				) {
 			return 0;
@@ -44,9 +58,9 @@ int TriRecurs(float x1,float x2,float x3,float y1,float y2,float y3,float lend) 
 				al_draw_line(xv, yv, x3, y3, al_map_rgb(255, 255, 255), 1);
 
 				al_flip_display();
-				
 
 				TriRecurs(xv, x1, x2, yv, y1, y2, lend);
+
 				TriRecurs(xv, x2, x3, yv, y2, y3, lend);
 				TriRecurs(xv, x1, x3, yv, y1, y3, lend);
 		}
