@@ -1,10 +1,12 @@
-#ifndef PARSE_CMD_LINE_H
-#define	PARSE_CMD_LINE_H
+#ifndef MANDELBROT_H
+#define	MANDELBROT_H
 
-#DEFINE MAX 1000
+#define MAX 1000
+#define XMAX 600
+#define YMAX 400
 
 /*********************
-*     mandelrbot     *
+*     mandelBrot     *
 **********************
 *SYNTAX: funcion que dibuja en un display de allegro un fractal de mandelbrot.
 *INPUT:
@@ -14,6 +16,8 @@
 *OUTPUT:
 *	-un display con el dibujo creado
 */
-void mandelrbot(double x0, double y0, double xf, double yf);
+void mandelbrot(double x0, double y0, double xf, double yf);
+
+int recursive(double x, double y, double * c_re, double * c_im);
 
 #endif
