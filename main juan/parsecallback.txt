@@ -100,41 +100,75 @@ int parseCallback(char *key, char *value, void *userdata)
 		}
 		else if ((!(strcmp(strlwr(casehandler), "leftangle"))) && (userdata.flags[5] == 0))
 		{
-			if((atoi(value) >= -90) && (atoi(value) <= 90))
+			if(((atof(value) >= -90) && (atof(value) < 0)) || (!(strcmp(value, "0"))) || ((atof(value) > 0) && (atof(value) <= 90)))
 			{
-				
+				userdata.leftangle = atof(value);
+				userdata.flags[5] = 1;
 			}
 			else
 			{
-			
+				validez = 0;
 			}
 		}
 		else if ((!(strcmp(strlwr(casehandler), "rightangle"))) && (userdata.flags[6] == 0))
 		{
-			if((atoi(value) >= -90) && (atoi(value) <= 90))
+			if(((atof(value) >= -90) && (atof(value) < 0)) || (!(strcmp(value, "0"))) || ((atof(value) > 0) && (atof(value) <= 90)))
 			{
-				
+				userdata.rightangle = atof(value);
+				userdata.flags[6] = 1;
 			}
 			else
 			{
-			
+				validez = 0;
 			}
 		}
 		else if ((!(strcmp(strlwr(casehandler), "x0"))) && (userdata.flags[7] == 0))
 		{
-			
+			if((!(strcmp(value, "0"))) || (atof(value) != 0))
+			{
+				userdata.x0 = atof(value);
+				userdata.flags[7] = 1;
+			}
+			else
+			{
+				validez = 0;
+			}
 		}
 		else if ((!(strcmp(strlwr(casehandler), "y0"))) && (userdata.flags[8] == 0))
 		{
-			
+			if((!(strcmp(value, "0"))) || (atof(value) != 0))
+			{
+				userdata.y0 = atof(value);
+				userdata.flags[8] = 1;
+			}
+			else
+			{
+				validez = 0;
+			}
 		}
 		else if ((!(strcmp(strlwr(casehandler), "xf"))) && (userdata.flags[9] == 0))
 		{
-			
+			if((!(strcmp(value, "0"))) || (atof(value) != 0))
+			{
+				userdata.xf = atof(value);
+				userdata.flags[9] = 1;
+			}
+			else
+			{
+				validez = 0;
+			}
 		}
 		else if ((!(strcmp(strlwr(casehandler), "yf"))) && (userdata.flags[10] == 0))
 		{
-			
+			if((!(strcmp(value, "0"))) || (atof(value) != 0))
+			{
+				userdata.yf = atof(value);
+				userdata.flags[10] = 1;
+			}
+			else
+			{
+				validez = 0;
+			}
 		}
 		else  //ocurre en el caso en el que la clave no es valida, o si la clave es valida, pero no su valor
 		{
