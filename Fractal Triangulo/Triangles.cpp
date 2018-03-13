@@ -1,6 +1,5 @@
 #include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro_primitives.h>
-#include<stdio.h>
+#include <stdio.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -14,21 +13,21 @@ void triFractal(float x, float y, float lStart, float leftAngle, float rightAngl
 
 	float x2 = x + lStart; //Coordenada del final de la base
 
-	float topAngle = (180 - leftAngle + rightAngle); //Calculo el ·ngulo superior
+	float topAngle = (180 - leftAngle + rightAngle); //Calculo el √°ngulo superior
 
-	// Usando trigonometrÌa, teniendo los tres ·ngulos y un lado podemos calcular los otros dos lados.
+	// Usando trigonometr√≠a, teniendo los tres √°ngulos y un lado podemos calcular los otros dos lados.
 	
-	float lSide = lStart * sin(-rightAngle * RACONV)/sin(topAngle * RACONV); //Calculamos el lado izquierdo del tri·ngulo.
+	float lSide = lStart * sin(-rightAngle * RACONV)/sin(topAngle * RACONV); //Calculamos el lado izquierdo del tri√°ngulo.
 	float lSideX = lSide * cos(leftAngle * RACONV); // Con el angulo izquierdo calculamos el lado opuesto y adyacente del triangulo rectangulo que se forma...
 	float lSideY = lSide * sin(leftAngle * RACONV); //...Si tomamos el lado izquierdo como una hipotenusa. 
 
 
-	float x3 = x + lSideX ; //La coordenada X del tercer vÈrtice.
-	float y3 = y - lSideY ;//La coordenada Y del tercer vÈrtice. sohcahTOA: Tan(langle)*adyacente = opuesto (altura).
+	float x3 = x + lSideX ; //La coordenada X del tercer v√©rtice.
+	float y3 = y - lSideY ;//La coordenada Y del tercer v√©rtice.
 
 	drawTriangle(x, x2, x3, y, y3); //Dibujamos el triangulo base.
 
-	TriRecurs(x, x2, x3, y, y, y3, lEnd); //FunciÛn recursiva.
+	TriRecurs(x, x2, x3, y, y, y3, lEnd); //Funci√≥n recursiva.
 
 }
 
@@ -46,7 +45,7 @@ int TriRecurs(float x1,float x2,float x3,float y1,float y2,float y3,float lEnd) 
 
 		if (
 				(sqrt(pow((xv - x1), 2) + pow((yv - y1), 2))) < lEnd || //Si la distancia entre algun par de vertices a dibujar es menor a lEnd...
-				(sqrt(pow((xv - x2), 2) + pow((yv - y2), 2))) < lEnd || //...entonces la recursividad termina ahÌ.
+				(sqrt(pow((xv - x2), 2) + pow((yv - y2), 2))) < lEnd || //...entonces la recursividad termina ah√≠.
 				(sqrt(pow((xv - x3), 2) + pow((yv - y3), 2))) < lEnd
 				) {
 
@@ -61,7 +60,7 @@ int TriRecurs(float x1,float x2,float x3,float y1,float y2,float y3,float lEnd) 
 
 			if (lEnd <= 5) {
 				al_flip_display();
-				al_rest(0.000075); //Ponemos un delay muy chico para que el dibujo sea fluido pero no instant·neo.
+				al_rest(0.000075); //La velocidad de dibujo depende del lEnd para que el dibujado sea fluido.
 			}
 			else if (lEnd <= 10) {
 				al_flip_display();
