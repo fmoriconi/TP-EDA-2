@@ -21,7 +21,7 @@ double angn = ((360 / n) * RACONV); //angulo interior del poligono-n
 
 
 void octogon(double xa, double ya, int n, double len);	//Dibuja un poligono dado el centro, cantidad de lados y largo
-int recurs(double x, double y, int n, double len, double lim); //recursividad que dibuja poligonos en los vertices del poligono acortando len hasta que un limite se cumple
+int recurs(double x, double y, int n, double len, double lim, float k); //recursividad que dibuja poligonos en los vertices del poligono acortando len hasta que un limite se cumple
 
 int main() {
 
@@ -44,8 +44,9 @@ int main() {
 
 	double lim = 10;
 	double len = 100;
+	float k = 0,5;
 
-	recurs(x, y, n, len, lim);
+	recurs(x, y, n, len, lim, k);
 
 
 	al_flip_display();
@@ -53,7 +54,7 @@ int main() {
 	return 0;
 }
 
-int recurs(double xa, double ya, int n, double len, double lim)
+int recurs(double xa, double ya, int n, double len, double lim,float k)
 {
 
 	octogon(xa, ya, n, len);
@@ -75,7 +76,7 @@ int recurs(double xa, double ya, int n, double len, double lim)
 		{
 			double x0 = cos(CurrAng) * lado;
 			double y0 = sin(CurrAng) * lado;
-			recurs(x, y, n, len/2, lim);
+			recurs(x, y, n, len*k, lim);
 
 			x = x + x0;
 			y = y - y0;
