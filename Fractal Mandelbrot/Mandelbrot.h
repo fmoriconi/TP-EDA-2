@@ -2,8 +2,8 @@
 #define	MANDELBROT_H
 
 #define MAX 1000
-#define XMAX 600
-#define YMAX 400
+#define XMAX 720
+#define YMAX 600
 
 /*********************
 *     mandelBrot     *
@@ -18,6 +18,6 @@
 */
 void mandelbrot(double x0, double y0, double xf, double yf);
 
-int recursive(double x, double y, double * c_re, double * c_im);
+int recursive(double x, double y, double * c_re, double * c_im, double * rad, int iteration);
 
 #endif

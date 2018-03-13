@@ -14,8 +14,8 @@ int main(void){
     
     double x0 = -2.0;
     double y0 = -2.0;
-    double xf = -2.0;
-    double yf = -2.0;
+    double xf = 2.0;
+    double yf = 2.0;
 
     mandelbrot(x0, y0, xf, yf);
     
