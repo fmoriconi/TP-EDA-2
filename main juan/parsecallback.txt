@@ -100,10 +100,15 @@ int parseCallback(char *key, char *value, void *userdata)
 		}
 		else if ((!(strcmp(strlwr(casehandler), "leftangle"))) && (userdata.flags[5] == 0))
 		{
-			if(((atof(value) >= -90) && (atof(value) < 0)) || (!(strcmp(value, "0"))) || ((atof(value) > 0) && (atof(value) <= 90)))
+			if((!(strcmp(value, "0"))) || ((atof(value) > 0) && (atof(value) <= 90)))
 			{
-				userdata.leftangle = atof(value);
+				userdata.leftangle = -atof(value);
 				userdata.flags[5] = 1;
+			}
+			else if(((atof(value) >= -90) && (atof(value) < 0)))
+			{
+				userdata.rightangle = atof(value);
+				userdata.flags[6] = 1;
 			}
 			else
 			{
@@ -112,9 +117,14 @@ int parseCallback(char *key, char *value, void *userdata)
 		}
 		else if ((!(strcmp(strlwr(casehandler), "rightangle"))) && (userdata.flags[6] == 0))
 		{
-			if(((atof(value) >= -90) && (atof(value) < 0)) || (!(strcmp(value, "0"))) || ((atof(value) > 0) && (atof(value) <= 90)))
+			if((!(strcmp(value, "0"))) || ((atof(value) > 0) && (atof(value) <= 90)))
 			{
 				userdata.rightangle = atof(value);
+				userdata.flags[6] = 1;
+			}
+			else if(((atof(value) >= -90) && (atof(value) < 0)))
+			{
+				userdata.rightangle = -atof(value);
 				userdata.flags[6] = 1;
 			}
 			else

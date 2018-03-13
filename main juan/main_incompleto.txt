@@ -52,17 +52,24 @@ int main (int argc, char * argv[])
 	{
 		if(parseo)
 		{
-			if(data.type == poligono)
+			if(check_values(data))
 			{
-				draw_poligon();
+				if(data.type == poligono)
+				{
+					draw_poligon();
+				}
+				else if(data.type == uniforme)
+				{
+					draw_uniform();	
+				}
+				else if(data.type == mandelbrot)
+				{
+					draw_mandelbrot();
+				}
 			}
-			else if(data.type == uniforme)
+			else
 			{
-				draw_uniform();	
-			}
-			else if(data.type == mandelbrot)
-			{
-				draw_mandelbrot();
+				printf("Error found in parameters.\n");
 			}
 		}
 		else
