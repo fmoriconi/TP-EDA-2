@@ -16,7 +16,7 @@
 *OUTPUT:
 *	-un display con el dibujo creado
 */
-void mandelbrot(double x0, double y0, double xf, double yf);
+void mandelbrotfun(double x0, double y0, double xf, double yf);
 
 int recursive(double x, double y, double * c_re, double * c_im, double * rad, int iteration);
 

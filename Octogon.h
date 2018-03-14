@@ -10,10 +10,9 @@
 #define W YMAX
 #define X (H / 2)		//Centro (x,y)
 #define Y (W / 2)
-double angn = ((360 / n) * RACONV); //angulo interior del poligono-n
 
 
-void octogon(double xa, double ya, int n, double len);	//Dibuja un poligono dado el centro, cantidad de lados y largo
+void octogon(double xa, double ya, int n, double len, double CurrAng);	//Dibuja un poligono dado el centro, cantidad de lados y largo
 int recurs(double x, double y, int n, double len, double lim, float k); //recursividad que dibuja poligonos en los vertices del poligono acortando len hasta que un limite se cumple
 
 #endif

@@ -1,10 +1,10 @@
 #ifndef header
+#define header
+
 #define success 1
 #define error 0
 
-
-
-
+#define CANTIDAD_OPCIONES 11
 typedef enum
 {
 	poligono,
@@ -17,11 +17,11 @@ typedef struct
 	int flags[11];
 	fractal_type_num type;
 	int sides;
-	int lstart;
-	int lend;
-	float lconstant;
-	float left_angle;
-	float right_angle;
+	int lStart;
+	int lEnd;
+	float lConstant;
+	float leftAngle;
+	float rightAngle;
 	float x0;
 	float y0;
 	float xf;

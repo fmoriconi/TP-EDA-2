@@ -11,23 +11,22 @@
 
 void triFractal(float x, float y, float lStart, float leftAngle, float rightAngle, float lEnd) {
 
-	float x2 = x + lStart; //Coordenada del final de la base
-
-	float topAngle = (180 - leftAngle + rightAngle); //Calculo el ángulo superior
-
 	// Usando trigonometría, teniendo los tres ángulos y un lado podemos calcular los otros dos lados.
-	
+	float topAngle = (180 - leftAngle + rightAngle); //Calculo el ángulo superior
 	float lSide = lStart * sin(-rightAngle * RACONV)/sin(topAngle * RACONV); //Calculamos el lado izquierdo del triángulo.
 	float lSideX = lSide * cos(leftAngle * RACONV); // Con el angulo izquierdo calculamos el lado opuesto y adyacente del triangulo rectangulo que se forma...
 	float lSideY = lSide * sin(leftAngle * RACONV); //...Si tomamos el lado izquierdo como una hipotenusa. 
 
+	float x1 = x - lStart / 2; //Coordenada del comienzo de la base
+	float x2 = x + lStart/2; //Coordenada del final de la base
+	float x3 = x; //La coordenada X del tercer vértice.
 
-	float x3 = x + lSideX ; //La coordenada X del tercer vértice.
-	float y3 = y - lSideY ;//La coordenada Y del tercer vértice.
+	float y1 = y + lSideY/2;
+	float y3 = y - lSideY/2 ;//La coordenada Y del tercer vértice.
 
-	drawTriangle(x, x2, x3, y, y3); //Dibujamos el triangulo base.
+	drawTriangle(x1, x2, x3, y1, y3); //Dibujamos el triangulo base.
 
-	TriRecurs(x, x2, x3, y, y, y3, lEnd); //Función recursiva.
+	TriRecurs(x1, x2, x3, y1, y1, y3, lEnd); //Función recursiva.
 
 }
 
@@ -60,34 +59,25 @@ int TriRecurs(float x1,float x2,float x3,float y1,float y2,float y3,float lEnd) 
 
 			if (lEnd <= 5) {
 				al_flip_display();
-				al_rest(0.000075); //La velocidad de dibujo depende del lEnd para que el dibujado sea fluido.
+				al_rest(0.075); //La velocidad de dibujo depende del lEnd para que el dibujado sea fluido.
 			}
 			else if (lEnd <= 10) {
 				al_flip_display();
-				al_rest(0.0015);
+				al_rest(0.15);
 			}
 			else if (lEnd <= 20) {
 				al_flip_display();
-				al_rest(0.0030);
+				al_rest(0.30);
 			}
-			else if (lEnd <= 40) {
+			else{
 				al_flip_display();
-				al_rest(0.006);
-			}
-			else if (lEnd <= 100) {
-				al_flip_display();
-				al_rest(0.5);
-			}
-			else {
-				al_flip_display();
-				al_rest(0.75);
+				al_rest(0.6);
 			}
 
 
 			TriRecurs(xv, x1, x2, yv, y1, y2, lEnd); //La recursividad debe repetirse una vez por cada nuevo triangulo creado.
 			TriRecurs(xv, x2, x3, yv, y2, y3, lEnd); //Las lineas que van desde los vertices hasta el centro de masa crean 3 nuevos triangulos.
 			TriRecurs(xv, x1, x3, yv, y1, y3, lEnd); //Entonces se llama a la recursividad con las combinaciones de vertices de cada triangulo creado.
-
 		}
 
 		return 0;
