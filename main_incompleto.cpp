@@ -1,13 +1,14 @@
-#include<stdio.h>
-#include <allegro5\allegro5.h>
-#include <allegro5\allegro_primitives.h>
-#include <allegro5\allegro_audio.h>
-#include <allegro5\allegro_acodec.h>
+#include <stdio.h>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
+#include <allegro5/allegro_color.h>
 
 #include "Triangles.h"
 #include "Mandelbrot.h"
 #include "Octogon.h"
-#include "header.h"
+#include "Header.h"
 #include "parsecmdl.h"
 #include "parser.h"
 

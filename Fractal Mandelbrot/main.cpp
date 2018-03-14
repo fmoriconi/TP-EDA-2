@@ -12,10 +12,10 @@ int main(void){
     ALLEGRO_DISPLAY * display = al_create_display(XMAX, YMAX);
     al_clear_to_color(al_map_rgb(0, 0, 0));
     
-    double x0 = -2.0;
-    double y0 = -2.0;
-    double xf = 2.0;
-    double yf = 2.0;
+    double x0 = -0.5;
+    double y0 = -0.5;
+    double xf = 1.0;
+    double yf = 1.0;
 
     mandelbrotfun(x0, y0, xf, yf);
     

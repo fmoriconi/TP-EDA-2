@@ -21,8 +21,8 @@ void triFractal(float x, float y, float lStart, float leftAngle, float rightAngl
 	float x2 = x + lStart/2; //Coordenada del final de la base
 	float x3 = x; //La coordenada X del tercer vértice.
 
-	float y1 = y + lSideY/2;
-	float y3 = y - lSideY/2 ;//La coordenada Y del tercer vértice.
+	float y1 = y - lSideY/2;
+	float y3 = y + lSideY/2 ;//La coordenada Y del tercer vértice.
 
 	drawTriangle(x1, x2, x3, y1, y3); //Dibujamos el triangulo base.
 
